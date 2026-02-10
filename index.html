@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artículos de Limpieza</title>
+  <style>
+    :root {
+      --rojo: #c62828;
+      --amarillo: #fbc02d;
+      --negro: #1c1c1c;
+      --gris: #f5f5f5;
+      --verde: #2e7d32;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--gris);
+      color: var(--negro);
+    }
+
+    header {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 4px solid var(--rojo);
+    }
+
+    header img {
+      width: 120px;
+    }
+
+    .catalogo {
+      max-width: 1100px;
+      margin: 40px auto 120px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .producto {
+      position: relative;
+      padding-top: 60px;
+      background: white;
+      border-radius: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .producto h3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--rojo);
+      color: white;
+      padding: 12px 10px;
+      border-radius: 10px 10px 0 0;
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .linea {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .precio {
+      font-weight: bold;
+      color: var(--rojo);
+    }
+
+    .btn-mas {
+      background: var(--verde);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .nota {
+      font-size: 0.85rem;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .carrito {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-top: 3px solid var(--rojo);
+      padding: 10px 15px;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+    }
+
+    .carrito h3 {
+      margin: 0 0 5px;
+    }
+
+    #lista-carrito {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .aclaracion {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    #lista-carrito li {
+      font-size: 0.9rem;
+    }
+
+    .boton.whatsapp {
+      display: block;
+      text-align: center;
+      background: #25D366;
+      color: white;
+      padding: 10px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="Logo emprendimiento" />
+    <h1>Tus Artículos de Limpieza</h1>
+    <p>Precios mayoristas · Pedidos por WhatsApp</p>
+  </header>
+
+  <div class="filtros">
+  <input type="text" id="buscador" placeholder="Buscar producto..." />
+  <div class="categorias">
+    <button data-cat="todos" class="cat active">Todos</button>
+    <button data-cat="liquidos" class="cat">Líquidos</button>
+    <button data-cat="bolsas" class="cat">Bolsas</button>
+    <button data-cat="accesorios" class="cat">Accesorios</button>
+    <button data-cat="higiene" class="cat">Higiene</button>
+  </div>
+</div>
+
+<section class="catalogo">
+
+  <div class="producto" data-cat="liquidos"><h3>Alcohol</h3>
+    <div class="linea">1 lt <span class="precio">$3.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">2 lts <span class="precio">$5.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$11.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Alguicida</h3>
+    <div class="linea">2 lts <span class="precio">$6.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$15.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Clarificador</h3>
+    <div class="linea">2 lts <span class="precio">$6.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$15.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Cloro</h3>
+    <div class="linea">5 lts <span class="precio">$5.100</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">10 lts <span class="precio">$8.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">20 lts <span class="precio">$16.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Lavandina</h3>
+    <div class="linea">5 lts <span class="precio">$2.800</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto"><h3>Lavandina en gel</h3>
+    <div class="linea">1 lt <span class="precio">$1.600</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$7.500</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Detergente tipo Magistral</h3>
+    <div class="linea">1 lt <span class="precio">$1.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">2 lts <span class="precio">$3.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$5.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">10 lts <span class="precio">$9.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Detergente al 30%</h3>
+    <div class="linea">1 lt <span class="precio">$4.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">2 lts <span class="precio">$9.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Desengrasante Mr. Músculo (concentrado)</h3>
+    <div class="linea">1 lt <span class="precio">$1.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">2 lts <span class="precio">$2.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$4.500</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Jabón líquido Ariel / Skip</h3>
+    <div class="linea">5 lts <span class="precio">$5.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">10 lts <span class="precio">$7.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">20 lts <span class="precio">$13.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Suavizante</h3>
+    <div class="linea">2 lts <span class="precio">$3.800</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$5.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">10 lts <span class="precio">$7.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">20 lts <span class="precio">$13.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="liquidos"><h3>Desodorante de piso</h3>
+    <div class="linea">2 lts <span class="precio">$500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">5 lts <span class="precio">$2.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">10 lts <span class="precio">$3.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="nota">Disponibles: lavanda, poema, chicle, citronella y más</div>
+  </div>
+
+  <div class="producto" data-cat="bolsas"><h3>Bolsas de residuos (paquete)</h3>
+    <div class="linea">45 x 60 (10 un) <span class="precio">$600</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">50 x 70 (10 un) <span class="precio">$550</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">80 x 110 (10 un) <span class="precio">$1.400</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="accesorios"><h3>Guantes de goma</h3>
+    <div class="linea">Par <span class="precio">$2.500</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="accesorios"><h3>Gatillo pulverizador</h3>
+    <div class="linea">Unidad <span class="precio">$1.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="higiene"><h3>Papel higiénico</h3>
+    <div class="linea">Bolson x30 rollos <span class="precio">$10.000</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">Pack x4 rollos <span class="precio">$1.400</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">Unidad <span class="precio">$500</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto" data-cat="higiene"><h3>Rollo de cocina</h3>
+    <div class="linea">Bolson x8 <span class="precio">$10.000</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto"><h3>Cremoso tipo CIF</h3>
+    <div class="linea">1 lt <span class="precio">$2.500</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+  <div class="producto"><h3>CIF con lavandina</h3>
+    <div class="linea">1 lt <span class="precio">$1.500</span> <button type="button" class="btn-mas">+</button></div>
+    <div class="linea">2 lts <span class="precio">$2.500</span> <button type="button" class="btn-mas">+</button></div>
+  </div>
+
+</section>
+
+  <div class="carrito">
+    <h3>🛒 Pedido</h3>
+    <ul id="lista-carrito"></ul>
+    <div id="total" class="total">Total aproximado: $0</div>
+    <div class="aclaracion">Precios sujetos a modificación. Los valores no incluyen el envase.</div>
+    <a id="btn-whatsapp" class="boton whatsapp" href="#" target="_blank">Enviar pedido por WhatsApp</a>
+  </div>
+
+  <script>
+const carrito = {};
+
+function limpiarPrecio(texto) {
+  return Number(texto.replace(/\$/g, '').replace(/\./g, '').trim());
+}
+
+// Carrito
+
+document.addEventListener('click', function (e) {
+  if (e.target.classList.contains('btn-mas')) {
+    const linea = e.target.closest('.linea');
+    const producto = e.target.closest('.producto').querySelector('h3').innerText;
+    const presentacion = linea.childNodes[0].textContent.trim();
+    const precioTexto = linea.querySelector('.precio').innerText;
+    const precio = limpiarPrecio(precioTexto);
+
+    const key = producto + ' ' + presentacion;
+    carrito[key] = carrito[key]
+      ? { ...carrito[key], cantidad: carrito[key].cantidad + 1 }
+      : { producto, presentacion, precio, cantidad: 1 };
+
+    renderCarrito();
+  }
+
+  if (e.target.classList.contains('cat')) {
+    document.querySelectorAll('.cat').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    filtrarProductos(e.target.dataset.cat);
+  }
+});
+
+function quitar(key) {
+  carrito[key].cantidad--;
+  if (carrito[key].cantidad <= 0) delete carrito[key];
+  renderCarrito();
+}
+
+function renderCarrito() {
+  const lista = document.getElementById('lista-carrito');
+  lista.innerHTML = '';
+  let total = 0;
+  let mensaje = 'Hola, quiero hacer el siguiente pedido:%0A';
+
+  Object.entries(carrito).forEach(([key, item]) => {
+    total += item.precio * item.cantidad;
+    mensaje += `- ${item.cantidad} x ${item.producto} ${item.presentacion}%0A`;
+    const li = document.createElement('li');
+    li.innerHTML = `${item.cantidad} x ${item.producto} ${item.presentacion} <button onclick="quitar('${key}')">➖</button>`;
+    lista.appendChild(li);
+  });
+
+  document.getElementById('total').textContent = `Total aproximado: $${total.toLocaleString('es-AR')}`;
+  document.getElementById('btn-whatsapp').href = `https://wa.me/5491163730247?text=${mensaje}`;
+}
+
+// Buscador
+
+document.getElementById('buscador').addEventListener('input', function () {
+  const texto = this.value.toLowerCase();
+  document.querySelectorAll('.producto').forEach(p => {
+    p.style.display = p.innerText.toLowerCase().includes(texto) ? '' : 'none';
+  });
+});
+
+function filtrarProductos(cat) {
+  document.querySelectorAll('.producto').forEach(p => {
+    p.style.display = cat === 'todos' || p.dataset.cat === cat ? '' : 'none';
+  });
+}
+</script>
+
+  <div class="botones">
+    <a class="boton whatsapp" href="https://wa.me/5491163730247" target="_blank">WhatsApp</a>
+    <a class="boton instagram" href="https://instagram.com/tuusuario" target="_blank">Instagram</a>
+  </div>
+
+  <footer>
+    © 2026 · Emprendimiento de Artículos de Limpieza
+  </footer>
+
+</body>
+</html>
